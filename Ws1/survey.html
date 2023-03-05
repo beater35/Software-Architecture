@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survey</title>
+    <style>
+        body{
+            width: 100%;
+            height: 100vh;
+        }
+        h1{
+            text-align: center;
+            color: rgb(22, 170, 79);
+        }
+        fieldset{
+            width: 100%;
+            border: none;
+        }
+        label{
+            display: block;
+        }
+        form{
+            width: 20%;
+            margin: 0 auto;
+        }
+        #first{
+            display: flex;
+            flex-direction: column;
+        }
+        #comments{
+            display: flex;
+        }
+        input[type='submit']{
+            display: block;
+            width: 100%;
+            height: 2.5em;
+            margin-top: 2em;
+            font-weight: 600;
+            font-size: medium;
+            background-color: rgb(22, 170, 79);
+            border: none;
+            color: rgb(26, 19, 19);
+        }
+        textarea{
+            width: 100%;
+        }
+        select{
+            width: 100%;
+            height: 2em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Herald College Kathmandu Survey Form</h1>
+    <form>
+        <fieldset>
+            <label id="first">
+                name<input>
+                email<input> 
+                age<input>
+            </label>
+        </fieldset> 
+        <fieldset>
+            <label for="types">Which option best describes you </label>
+            <select name="types" id="types">Student
+            <option value="">Teacher</option>
+            <option value="">Cleaner</option>
+            <option value="">Accountant</option>
+            </select>
+        </fieldset>
+        <fieldset>
+            Would you recomend Herald College to a friend?
+            <label for="yes"><input id="yes" type="radio" name="reco">yes</label>
+            <label for="no"><input id="no" type="radio" name="reco">no</label>
+            <label for="maybe"><input id="maybe" type="radio" name="reco">maybe</label>
+        </fieldset>
+        <fieldset>
+            Languages and Frameworks known (Check all that apply)
+            <label for="C"><input type="checkbox" id="C">C</label>
+            <label for="C++"><input type="checkbox" id="C++">C++</label>
+            <label for="C#"><input type="checkbox" id="C#">C#</label>
+            <label for="Java"><input type="checkbox" id="Java">Java</label>
+            <label for="Python"><input type="checkbox" id="Python">Python</label>
+            <label for="Javascript"><input type="checkbox" id="Javascript">Javascript</label>
+            <label for="React"><input type="checkbox" id="React">React</label>
+            <label for="Angular"><input type="checkbox" id="Angular">Angular</label>
+            <label for="Django"><input type="checkbox" id="Django">Django</label>
+            <label for="Spring"><input type="checkbox" id="Spring">Spring</label>
+        </fieldset>
+        <label for="comments"> Any comments or suggestions:
+            <textarea id="comments" rows="2" ></textarea>
+        </label>
+        <input type="submit" value="Submit" />
+    </form>
+</body>
+</html>
