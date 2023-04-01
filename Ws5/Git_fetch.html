@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>GitHub Repositories</title>
+    <style>
+      body {
+        background-color: #f9f9f9;
+        font-family: Arial, sans-serif;
+        color: #333;
+      }
+
+      h1 {
+        text-align: center;
+        margin-top: 30px;
+      }
+
+      label {
+        display: block;
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+
+      input[type="text"] {
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+      }
+
+      button {
+        padding: 10px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #0069d9;
+      }
+
+      #repos {
+        margin-top: 30px;
+      }
+
+      ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      li {
+        padding: 10px;
+        border-bottom: 1px solid #ccc;
+      }
+
+      li:last-child {
+        border-bottom: none;
+      }
+
+    </style>
+    <script>
+      function getRepos() {
+        const username = document.getElementById("username").value;
+        const url = `https://api.github.com/users/${username}/repos`;
+        fetch(url)
+          .then(response => response.json())
+          .then(data => {
+            const repos = data.map(repo => `<li><a href="${repo.html_url}">${repo.name}</a></li>`);
+            document.getElementById("repos").innerHTML = `<ul>${repos.join("")}</ul>`;
+          })
+          .catch(error => console.error(error));
+      }
+    </script>
+  </head>
+  <body>
+    <h1>GitHub Repositories</h1>
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username">
+    <button onclick="getRepos()">Search</button>
+    <div id="repos"></div>
+  </body>
+</html>

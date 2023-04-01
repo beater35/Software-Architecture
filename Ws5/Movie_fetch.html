@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Movie Search</title>
+    <style>
+      .container {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      h1 {
+        margin-top: 40px;
+      }
+
+      .search-container {
+        margin-top: 40px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      #movieTitle {
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 5px 0 0 5px;
+        border: none;
+      }
+
+      button {
+        font-size: 20px;
+        padding: 10px;
+        border-radius: 0 5px 5px 0;
+        border: none;
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+      }
+
+      .movie-container {
+        display: flex;
+        margin-top: 40px;
+        justify-content: center;
+      }
+
+      #moviePoster {
+        margin-right: 20px;
+      }
+
+      #moviePoster img {
+        max-width: 300px;
+      }
+
+      #movieInfo {
+        max-width: 600px;
+        text-align: left;
+      }
+
+      #movieInfo p {
+        margin: 10px 0;
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
+    </style>
+    <script>
+      const apiKey = "fe5b68ae";
+
+      async function searchMovie() {
+        const movieTitle = document.getElementById("movieTitle").value;
+        const url = `https://www.omdbapi.com/?t=${movieTitle}&apikey=${apiKey}`;
+
+        try {
+          const response = await fetch(url);
+          const data = await response.json();
+
+          if (data.Response === "False") {
+            throw new Error(data.Error);
+          }
+
+          const moviePoster = document.getElementById("moviePoster");
+          const movieInfo = document.getElementById("movieInfo");
+
+          moviePoster.innerHTML = `<img src="${data.Poster}" alt="${data.Title}">`;
+          movieInfo.innerHTML = `
+            <h2>${data.Title}</h2>
+            <p>Year: ${data.Year}</p>
+            <p>Rated: ${data.Rated}</p>
+            <p>Released: ${data.Released}</p>
+            <p>Runtime: ${data.Runtime}</p>
+            <p>Genre: ${data.Genre}</p>
+            <p>Director: ${data.Director}</p>
+            <p>Writer: ${data.Writer}</p>
+            <p>Actors: ${data.Actors}</p>
+            <p>Plot: ${data.Plot}</p>
+            <p>Awards: ${data.Awards}</p>
+          `;
+        } catch (error) {
+          console.error(error);
+          alert(error.message);
+        }
+      }
+
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Movie Search</h1>
+      <div class="search-container">
+        <input type="text" id="movieTitle" placeholder="Enter movie title...">
+        <button onclick="searchMovie()">Search</button>
+      </div>
+      <div class="movie-container">
+        <div id="moviePoster"></div>
+        <div id="movieInfo"></div>
+      </div>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
